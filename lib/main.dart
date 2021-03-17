@@ -67,99 +67,234 @@ class _CalculatorState extends State<CalculatorView>{
     const bgColorPrim = const Color(0xFFFFBF40);
     const btnColorPrim = Colors.white;
     const bgColorSecond = const Color(0xFF4671D5);
-    //final calculator = Provider.of<Calculator>(context);
-    return Material(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Spacer(),
-            Text(
-              text,
-              style: GoogleFonts.montserrat(
-                fontSize: 100,
-                fontWeight: FontWeight.w200,
-              ),
-            ),
-            SizedBox(height: 150),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                calcbutton("AC", bgColorPrim, btnColorPrim),
-                calcbutton("+/-", bgColorPrim, btnColorPrim),
-                calcbutton("%", bgColorPrim, btnColorPrim),
-                calcbutton("/", bgColorSecond, btnColorPrim),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                calcbutton("1", bgColorPrim, btnColorPrim),
-                calcbutton("2", bgColorPrim, btnColorPrim),
-                calcbutton("3", bgColorPrim, btnColorPrim),
-                calcbutton("*", bgColorSecond, btnColorPrim),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                calcbutton("4", bgColorPrim, btnColorPrim),
-                calcbutton("5", bgColorPrim, btnColorPrim),
-                calcbutton("6", bgColorPrim, btnColorPrim),
-                calcbutton("+", bgColorSecond, btnColorPrim),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                calcbutton("7", bgColorPrim, btnColorPrim),
-                calcbutton("8", bgColorPrim, btnColorPrim),
-                calcbutton("9", bgColorPrim, btnColorPrim),
-                calcbutton("-", bgColorSecond, btnColorPrim),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                RaisedButton(
-                  padding: EdgeInsets.fromLTRB(34, 20, 128, 20),
-                  onPressed: (){
-                  },
-                  child: Text("0",
-                      style: TextStyle(
-                        fontSize: 35,
-                        color: btnColorPrim,
-                      )
+    return Scaffold(
+        body: OrientationBuilder(
+          builder: (builder, orientation){
+            if (orientation == Orientation.portrait){
+              return Material(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Spacer(),
+                      Text(
+                        text,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 100,
+                          fontWeight: FontWeight.w200,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          RaisedButton(
+                            padding: EdgeInsets.fromLTRB(34, 20, 192, 20),
+                            onPressed: (){
+                              calculation("AC");
+                            },
+                            child: Text("AC",
+                                style: TextStyle(
+                                  fontSize: 35,
+                                  color: btnColorPrim,
+                                )
+                            ),
+                            shape: StadiumBorder(),
+                            color: bgColorPrim,
+                          ),
+                          calcbutton("/", bgColorSecond, btnColorPrim),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          calcbutton("1", bgColorPrim, btnColorPrim),
+                          calcbutton("2", bgColorPrim, btnColorPrim),
+                          calcbutton("3", bgColorPrim, btnColorPrim),
+                          calcbutton("*", bgColorSecond, btnColorPrim),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          calcbutton("4", bgColorPrim, btnColorPrim),
+                          calcbutton("5", bgColorPrim, btnColorPrim),
+                          calcbutton("6", bgColorPrim, btnColorPrim),
+                          calcbutton("+", bgColorSecond, btnColorPrim),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          calcbutton("7", bgColorPrim, btnColorPrim),
+                          calcbutton("8", bgColorPrim, btnColorPrim),
+                          calcbutton("9", bgColorPrim, btnColorPrim),
+                          calcbutton("-", bgColorSecond, btnColorPrim),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          RaisedButton(
+                            padding: EdgeInsets.fromLTRB(34, 20, 128, 20),
+                            onPressed: (){
+                              calculation("0");
+                            },
+                            child: Text("0",
+                                style: TextStyle(
+                                  fontSize: 35,
+                                  color: btnColorPrim,
+                                )
+                            ),
+                            shape: StadiumBorder(),
+                            color: bgColorPrim,
+                          ),
+                          calcbutton(".", bgColorPrim, btnColorPrim),
+                          calcbutton("=", bgColorSecond, btnColorPrim),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ],
                   ),
-                  shape: StadiumBorder(),
-                  color: bgColorPrim,
                 ),
-                calcbutton(".", bgColorPrim, btnColorPrim),
-                calcbutton("=", bgColorSecond, btnColorPrim),
-              ],
-            ),
-            SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
-      ),
+              );
+            } else{
+              return Material(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 6,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Spacer(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                calcbutton("1", bgColorPrim, btnColorPrim),
+                                calcbutton("2", bgColorPrim, btnColorPrim),
+                                calcbutton("3", bgColorPrim, btnColorPrim),
+                                calcbutton("+", bgColorSecond, btnColorPrim),
+                                calcbutton("*", bgColorSecond, btnColorPrim),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                calcbutton("4", bgColorPrim, btnColorPrim),
+                                calcbutton("5", bgColorPrim, btnColorPrim),
+                                calcbutton("6", bgColorPrim, btnColorPrim),
+                                calcbutton("-", bgColorSecond, btnColorPrim),
+                                calcbutton("/", bgColorSecond, btnColorPrim),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                calcbutton("7", bgColorPrim, btnColorPrim),
+                                calcbutton("8", bgColorPrim, btnColorPrim),
+                                calcbutton("9", bgColorPrim, btnColorPrim),
+                                RaisedButton(
+                                  padding: EdgeInsets.fromLTRB(34, 20, 96, 20),
+                                  onPressed: (){
+                                    calculation("AC");
+                                  },
+                                  child: Text("AC",
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        color: btnColorPrim,
+                                      )
+                                  ),
+                                  shape: StadiumBorder(),
+                                  color: bgColorPrim,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                RaisedButton(
+                                  padding: EdgeInsets.fromLTRB(34, 20, 120, 20),
+                                  onPressed: (){
+                                    calculation("0");
+                                  },
+                                  child: Text("0",
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        color: btnColorPrim,
+                                      )
+                                  ),
+                                  shape: StadiumBorder(),
+                                  color: bgColorPrim,
+                                ),
+                                calcbutton(".", bgColorSecond, btnColorPrim),
+                                RaisedButton(
+                                  padding: EdgeInsets.fromLTRB(34, 20, 120, 20),
+                                  onPressed: (){
+                                    calculation("=");
+                                  },
+                                  child: Text("=",
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        color: btnColorPrim,
+                                      )
+                                  ),
+                                  shape: StadiumBorder(),
+                                  color: bgColorPrim,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                        flex:4,
+                        child:  Text(
+                        text,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 100,
+                          fontWeight: FontWeight.w200,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }
+          },
+        )
     );
   }
-
   //Calculator logic
   dynamic text ='0';
   double numOne = 0;
@@ -260,7 +395,6 @@ class _CalculatorState extends State<CalculatorView>{
   }
 
   String doesContainDecimal(dynamic result) {
-
     if(result.toString().contains('.')) {
       List<String> splitDecimal = result.toString().split('.');
       if(!(int.parse(splitDecimal[1]) > 0))
@@ -268,5 +402,22 @@ class _CalculatorState extends State<CalculatorView>{
     }
     return result;
   }
-  
+
+}
+
+class HomePage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: OrientationBuilder(
+        builder: (builder, orientation){
+          if (orientation == Orientation.portrait){
+            return CalculatorView();
+          } else{
+            return Text("Lanshagt");
+          }
+          },
+      )
+    );
+  }
 }
